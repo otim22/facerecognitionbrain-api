@@ -47,7 +47,6 @@ app.post('/register', (req, res) => {
         id: '125',
         name: name,
         email: email,
-        password: password,
         entries: 0,
         joined: new Date()
     })
@@ -82,16 +81,6 @@ app.post('/image', (req, res) => {
         res.status(400).json('Not found');
     }
 })
-// bcrypt.hash(password, null, null, function(err, hash) {
-// console.log(hash);
-// });
-// // Load hash from your password DB.
-// bcrypt.compare("bacon", hash, function(err, res) {
-//     // res == true
-// });
-// bcrypt.compare("veggies", hash, function(err, res) {
-//     // res = false
-// });
 
 app.listen(3000, () => {
     console.log('App is running! on port 3000')
