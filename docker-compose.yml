@@ -1,0 +1,30 @@
+version: '3.6'
+
+services:
+
+    # Backend API
+    facerecognition-api:
+        container_name: backend
+        # image: node:10.0.0
+        build: ./
+        command: npm start
+        working_dir: /usr/src/facerecognition-api
+        environment:
+            POSTGRES_URI: postgres://otim:secret@postgres:5432/smart-brain-docker
+        links:
+            - postgres
+        ports:
+            - "3001:3001"
+        volumes:
+            - ./:/usr/src/facerecognition-api
+
+    # Postgres
+    postgres:
+        environment:
+            POSTGRES_USER: otim
+            POSTGRES_PASSWORD: secret
+            POSTGRES_DB: smart-brain-docker
+            POSTGRES_HOST: postgres
+        build: ./postgres
+        ports:
+            - "5432:5432"

@@ -3,27 +3,25 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+const morgan = require('morgan');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-var dbConnect = require('knex')({
+var dbConnect = knex({
   client: 'pg',
-  connection: {
-    connectionString : process.env.DATABASE_URL,
-    ssl: true,
-  }
+  connection: process.env.POSTGRES_URI
 });
 
 const app = express();
-
 app.use(cors());
 app.use(bodyParser.json())
+app.use(morgan('combined'))
 
 app.get('/', (req, res) => {
-    res.send('It working!s');
+    res.send('It workings!');
 })
 
 app.post('/signin', signin.handleSignin(dbConnect, bcrypt))
