@@ -34,6 +34,10 @@ app.get('/profile/:id', (req, res) => {
     profile.handleProfileGet(req, res, dbConnect)
 })
 
+app.post('/profile/:id', (req, res) => {
+    profile.handleProfileUpdate(req, res, dbConnect)
+})
+
 app.put('/image', (req, res) => {
     image.handleImage(req, res, dbConnect)
 })
