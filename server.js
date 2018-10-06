@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     res.send('It workings!');
 })
 
-app.post('/signin', signin.handleSignin(dbConnect, bcrypt))
+app.post('/signin', signin.signinAuthentication(dbConnect, bcrypt))
 
 app.post('/register', (req, res) => {
     register.handleRegister(req, res, dbConnect, bcrypt)
